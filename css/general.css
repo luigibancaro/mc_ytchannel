@@ -1,2 +1,16 @@
 /* CSS Document */
 
+/* IMPORT FONTS */
+@font-face{
+	font-family:'Swiss721BT-BoldCondensed';src:url('./eot/style_10.eot');src:url('./eot/style_10.eot?#iefix') format('embedded-opentype'),url('./woff/style_10.woff') format('woff'),url('./ttf/style_10.ttf') format('truetype'),url('./svg/style_10.svg#Swiss721BT-BoldCondensed') format('svg')
+}
+@font-face{
+	font-family:'BauerBodoniBT-Roman';src:url('./eot/style_659.eot');src:url('./eot/style_659.eot?#iefix') format('embedded-opentype'),url('./woff/style_659.woff') format('woff'),url('./ttf/style_659.ttf') format('truetype'),url('./svg/style_659.svg#BauerBodoniBT-Roman') format('svg')
+}
+@font-face{
+	font-family:'Montserrat-Regular';src:url('./eot/Montserrat-Regular.eot');src:url('./eot/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),url('./woff/Montserrat-Regular.woff') format('woff'),	url('./ttf/Montserrat-Regular.ttf') format('truetype'),url('./svg/Montserrat-Regular.svg#Swiss721BT-BoldCondensed') format('svg')
+}
+@font-face{
+	font-family:'RobotoSlab-Regular';src:url('./eot/RobotoSlab-Regular.eot');src:url('./eot/RobotoSlab-Regular.eot?#iefix') format('embedded-opentype'),url('./woff/RobotoSlab-Regular.woff') format('woff'),	url('./ttf/RobotoSlab-Regular.ttf') format('truetype'),url('./svg/RobotoSlab-Regular.svg#BauerBodoniBT-Roman') format('svg')
+}
+/* END IMPORT FONTS */

@@ -1,0 +1,19 @@
+/* CSS Document */
+
+@font-face{
+	font-family:'Montserrat-Regular';
+	src:url('./eot/Montserrat-Regular.eot');
+	src:url('./eot/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+	url('./woff/Montserrat-Regular.woff') format('woff'),
+	url('./ttf/Montserrat-Regular.ttf') format('truetype'),
+	url('./svg/Montserrat-Regular.svg#Swiss721BT-BoldCondensed') format('svg')
+}
+
+@font-face{
+	font-family:'RobotoSlab-Regular';
+	src:url('./eot/RobotoSlab-Regular.eot');
+	src:url('./eot/RobotoSlab-Regular.eot?#iefix') format('embedded-opentype'),
+	url('./woff/RobotoSlab-Regular.woff') format('woff'),
+	url('./ttf/RobotoSlab-Regular.ttf') format('truetype'),
+	url('./svg/RobotoSlab-Regular.svg#BauerBodoniBT-Roman') format('svg')
+}
