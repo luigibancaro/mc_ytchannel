@@ -48,27 +48,22 @@ function initGadget(){
 
 
 var gadgetHeight={
-	page:null,
+	Element:null,
 	htmlBody:null,
 	height:0,
-	pageLoader:null,
 	init:function(){
 		var $this=this;
 		_log('gadgetHeight: init');
-		$this.pageLoader=jQuery("#mc_pageloader");
-		$this.page=jQuery('#the_main_gadget_wrap');
+		$this.Element=jQuery('#the_main_gadget_wrap');
 		$this.htmlBody=jQuery('html,body');
-		$this.page.imagesLoaded(function(){
-			$this.pageLoader.fadeOut(500);
-			$this.page.fadeIn(500,function(){
-				$this.resize();
-				jQuery(window).resize(function(){$this.resize();});
-			});/**/
+		$this.Element.imagesLoaded(function(){
+			$this.resize();
+			jQuery(window).resize(function(){$this.resize();});
 		});
 	},
 	resize:function(){
 		var $this=this;
-		$this.height=$this.page.innerHeight();
+		$this.height=$this.Element.innerHeight();
 		$this.htmlBody.height($this.height);
 		_log('gadgetHeight: resize->new_heght:'+$this.height);
 		var new_height=JSON.stringify({"height": $this.height+"px"});
@@ -181,15 +176,12 @@ var allVideoPlayer={
 				playerVars:$this.playerVars,
 				events:{
 					'onReady':function(ev){
-						$this.players[i]=$player;
-						$this.players[i].theFirstPlayForThis=!isMobileDevice;//mobile can't autoplay
-						ev.target.playVideo();
-						$this.players[i].id=an_id;
-						$this.players[i].parent=$e;
-						$this.players[i].cover=$e_cover;
-						$this.players[i].overlay=$e_overlay;
-						$this.players[i].frame=$e.find('.videoTarget');
-						$this.players[i].overlay.stop(true,true).hover(
+						$player.id=an_id;
+						$player.parent=$e;
+						$player.cover=$e_cover;
+						$player.overlay=$e_overlay;
+						$player.frame=$e.find('.videoTarget');
+						$player.overlay.stop(true,true).hover(
 							function(){
 								lock=true;
 								_log("allVideoPlayer: player_"+i+"->over in");
@@ -203,6 +195,7 @@ var allVideoPlayer={
 								$player.cover.stop(true,true).animate({opacity:1},$this.animationTime);
 							}
 						);
+						$this.players[i]=$player;
 						allVideoPlayer.resize();
 					},
 					'onStateChange':function(ev){
@@ -214,12 +207,6 @@ var allVideoPlayer={
 							_log("allVideoPlayer: player_"+i+"->PAUSED");
 						}else if(ev.data==YT.PlayerState.BUFFERING){
 							_log("allVideoPlayer: player_"+i+"->BUFFERING");
-							if($this.players[i].theFirstPlayForThis){
-								_log("allVideoPlayer: first play for player_"+i+" -> pause him NOW!");
-								$this.players[i].theFirstPlayForThis=false;
-								ev.target.mute();
-								ev.target.pauseVideo();
-							}
 						}
 					},
 					'onError':function(event){_log(event);}
@@ -252,7 +239,7 @@ var allVideoPlayer={
 			_log('video_w:'+video_w+' video_h:'+video_h);
 			player.frame.css({'width':video_w,'height':video_h,'margin-top':mt,'margin-left':ml});	
 		});
-		//gadgetHeight.resize();
+		gadgetHeight.resize();
 	},
 	playerVars:{
 		'autoplay':0,'fs':0,'autohide':1,
