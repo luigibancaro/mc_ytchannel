@@ -17,6 +17,7 @@ isTablet=MobileEsp.DetectTierTablet();
 isApple=MobileEsp.DetectIos();
 isMobileDevice=isSmartPhone||isTablet;	
 
+
 function _log(data){
 	console.log(data);
 }
@@ -30,7 +31,7 @@ jQuery(document).ready(function(e){documentISready=true;initGadget();});
 
 function initGadget(){
 	//we need both document and YT API ready for init the players
-	if(documentISready&&ytAPIisReady){
+	if(documentISready&&ytAPIisReady){		
 		_log('initGadget: document && ytAPI are ready');
 		//var "pageType" must be defined in every pages
 		if(pageType=='category'){
@@ -46,26 +47,30 @@ function initGadget(){
 }
 
 
-
 var gadgetHeight={
-	bodyElement:null,
+	Element:null,
+	htmlBody:null,
 	height:0,
 	init:function(){
 		var $this=this;
 		_log('gadgetHeight: init');
-		$this.bodyElement=jQuery('body');
-		$this.bodyElement.imagesLoaded(function(){
+		$this.Element=jQuery('#the_main_gadget_wrap');
+		$this.htmlBody=jQuery('html,body');
+		$this.Element.imagesLoaded(function(){
 			$this.resize();
 			jQuery(window).resize(function(){$this.resize();});
 		});
 	},
 	resize:function(){
 		var $this=this;
-		$this.height=$this.bodyElement.innerHeight();
+		$this.height=$this.Element.innerHeight();
+		$this.htmlBody.height($this.height);
 		_log('gadgetHeight: resize->new_heght:'+$this.height);
 		var new_height=JSON.stringify({"height": $this.height+"px"});
 		top.postMessage(new_height,"https://www.youtube.com/");
 		top.postMessage(new_height,"http://www.youtube.com/");
+		top.postMessage(new_height,"http://localhost/");
+		top.postMessage(new_height,"http://localhost/");
 	}
 }
 
@@ -108,13 +113,14 @@ var singleVideo={
 			}
 		});
 		$this.resize();
-		jQuery(window).resize(function(){$this.resize();});
+		jQuery(document).resize(function(){$this.resize();});
 	},
 	resize:function(){
 		var $this=this;
 		_log("singleVideo: resize");
 		var video_h=$this.wrapper.width()*$this.ratio_w4h;
-		$this.wrapper.height('video_h');		
+		_log(video_h);
+		$this.wrapper.height(video_h);
 	},
 	fill:function(videoinfo){
 		var $this=this;
@@ -209,7 +215,7 @@ var allVideoPlayer={
 			
 		});
 		$this.isInit=true;
-		jQuery(window).resize(function(){$this.resize();});
+		jQuery(document).resize(function(){$this.resize();});
 	},
 	resize:function(){
 		var $this=this;
@@ -233,6 +239,7 @@ var allVideoPlayer={
 			_log('video_w:'+video_w+' video_h:'+video_h);
 			player.frame.css({'width':video_w,'height':video_h,'margin-top':mt,'margin-left':ml});	
 		});
+		gadgetHeight.resize();
 	},
 	playerVars:{
 		'autoplay':0,'fs':0,'autohide':1,

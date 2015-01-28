@@ -22,6 +22,7 @@ body{
 	margin:0;
 	font-family: Helvetica,Arial,sans-serif;
 	color:#000;
+	height:auto;
 }
 a,a:hover{text-decoration:none;color:#000;}
 img{
@@ -294,12 +295,12 @@ span.gplus a{background-image: url("../img/social/b_gplus.png");}
 M E D I A   Q U E R Y 
 ***********************************/
 @media (max-width:1262px){
-	.wrapper{max-width:1056px;}
+	/*.wrapper{max-width:1056px;}*/
 	.mc_txt_box .mc_txt_layer{font-size:13px;line-height:14px;}
 	.mc_txt_box .mc_txt_content{padding:25px;}
 }
 @media (max-width:1056px){
-	.wrapper{max-width:850px;}
+	/*.wrapper{max-width:850px;}*/
 	.mc_txt_box .mc_txt_layer{font-size:10px;line-height:11px;}
 	.mc_txt_box .mc_txt_content{padding:15px;}
 }
