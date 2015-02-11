@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>sample embed</title>
+
+<style>
+html,body{
+	margin:0;
+	padding:0;
+	background:url(img/sampleOnlyEmbedBg.png) top left no-repeat;
+	background-size:cover;
+}
+iframe{width:1262px; margin:0 auto; display:block; height:2000px;}
+@media (max-width:1262px){
+	iframe{max-width:1056px;}
+}
+@media (max-width:1056px){
+	iframe{max-width:850px;}
+}
+@media (max-width:850px){}
+
+</style>
+<script>
+
+function receiveMessage(event)
+{
+  // Do we trust the sender of this message?  (might be
+  // different from what we originally opened, for example).
+  if (event.origin!=="http://monclerdev.veganservers.com") return;
+  	
+	var data=JSON.parse(event.data); 
+	document.getElementById('frame').setAttribute("style","height:"+data.height);
+	
+  // event.source is popup
+  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
+}
+window.addEventListener("message", receiveMessage, false);
+
+</script>
+</head>
+
+<body>
+
+<iframe id="frame" src="http://monclerdev.veganservers.com/yt_gadget/" frameborder="0"></iframe>
+
+</body>
+</html>
